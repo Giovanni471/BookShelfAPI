@@ -1,4 +1,11 @@
 
+using BookShelf.Data;
+using BookShelf.Repositories;
+using BookShelf.Repositories.Interfaces;
+using BookShelf.Services;
+using BookShelf.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
 namespace BookShelf
 {
     public class Program
@@ -9,6 +16,18 @@ namespace BookShelf
 
             builder.Services.AddControllers();
             builder.Services.AddOpenApi();
+
+            builder.Services.AddDbContext<MyDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            builder.Services.AddScoped<ILibriRepository, LibriRepository>();
+            builder.Services.AddScoped<ILibriService, LibriService>();
+
+            builder.Services.AddScoped<ICategorieRepository, CategorieRepository>();
+            builder.Services.AddScoped<ICategorieService, CategorieService>();
+
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
 
@@ -21,6 +40,8 @@ namespace BookShelf
 
             app.UseAuthorization();
 
+            app.UseSwagger();
+            app.UseSwaggerUI(); 
 
             app.MapControllers();
 
