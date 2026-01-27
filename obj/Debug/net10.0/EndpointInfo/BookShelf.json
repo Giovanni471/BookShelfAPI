@@ -1,0 +1,16 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "BookShelf | v1",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://localhost:7127"
+    },
+    {
+      "url": "http://localhost:5271"
+    }
+  ],
+  "paths": { }
+}
