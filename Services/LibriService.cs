@@ -1,4 +1,5 @@
 ﻿using BookShelf.Models;
+using BookShelf.Models.ViewModels;
 using BookShelf.Repositories;
 using BookShelf.Repositories.Interfaces;
 using BookShelf.Services.Interfaces;
@@ -16,6 +17,11 @@ namespace BookShelf.Services
         public async Task<List<Libri>> GetAllLibriAsync()
         {
             return await _libriRepository.GetAllLibri();
+        }
+
+        public async Task<List<LibroViewModel>> GetAllLibriWithCategorie()
+        {
+            return await _libriRepository.GetAllLibriWithCategorie();
         }
 
         public async Task<Libri?> GetLibroByIdAsync(int id)

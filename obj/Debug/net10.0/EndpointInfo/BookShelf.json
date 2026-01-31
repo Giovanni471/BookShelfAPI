@@ -167,6 +167,44 @@
           }
         }
       }
+    },
+    "/api/Libri/GetAllWithCategorie": {
+      "get": {
+        "tags": [
+          "Libro"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LibroViewModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LibroViewModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LibroViewModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -224,6 +262,53 @@
           "ratingPersonale": {
             "type": "number",
             "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LibroViewModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "titolo": {
+            "type": "string",
+            "nullable": true
+          },
+          "autore": {
+            "type": "string",
+            "nullable": true
+          },
+          "annoPubblicazione": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dataInizio": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dataFine": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "ratingPersonale": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "categorie": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Categorie"
+            },
             "nullable": true
           }
         },

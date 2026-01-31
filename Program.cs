@@ -1,5 +1,6 @@
 
 using BookShelf.Data;
+using BookShelf.MiddleWare;
 using BookShelf.Repositories;
 using BookShelf.Repositories.Interfaces;
 using BookShelf.Services;
@@ -16,6 +17,15 @@ namespace BookShelf
 
             builder.Services.AddControllers();
             builder.Services.AddOpenApi();
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AngularPolicy", policy =>
+                {
+                    policy.WithOrigins("https://localhost:4200").AllowAnyMethod().AllowAnyHeader();
+                });
+            });
+
 
             builder.Services.AddDbContext<MyDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -36,12 +46,19 @@ namespace BookShelf
                 app.MapOpenApi();
             }
 
+            if (!app.Environment.IsDevelopment())
+            {
+                app.UseCors("AngularPolicy");
+                app.UseMiddleware<AuthenticationMiddleWare>();
+            }
+
+
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
             app.UseSwagger();
-            app.UseSwaggerUI(); 
+            app.UseSwaggerUI();
 
             app.MapControllers();
 

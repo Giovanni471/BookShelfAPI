@@ -1,5 +1,6 @@
 ﻿using BookShelf.Data;
 using BookShelf.Models;
+using BookShelf.Models.ViewModels;
 using BookShelf.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,6 +28,14 @@ namespace BookShelf.Controllers
         public async Task<ActionResult<Libri?>> GetLibroById(int Id)
         {
             return await _libriService.GetLibroByIdAsync(Id);
+        }
+
+
+        [HttpGet]
+        [Route("GetAllWithCategorie")]
+        public async Task<ActionResult<List<LibroViewModel?>>> GetAllLibriWithCategorie()
+        {
+            return await _libriService.GetAllLibriWithCategorie();
         }
     }
 }

@@ -67,6 +67,26 @@
   },
   {
     "ContainingType": "BookShelf.Controllers.LibroController",
+    "Method": "GetAllLibriWithCategorie",
+    "RelativePath": "api/Libri/GetAllWithCategorie",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[BookShelf.Models.ViewModels.LibroViewModel, BookShelf, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BookShelf.Controllers.LibroController",
     "Method": "GetLibroById",
     "RelativePath": "api/Libri/GetById",
     "HttpMethod": "GET",
