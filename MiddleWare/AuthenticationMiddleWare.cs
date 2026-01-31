@@ -17,7 +17,7 @@
             if (!context.Request.Headers.TryGetValue(API_KEY_HEADER_NAME, out var extractedApiKey))
             {
                 context.Response.StatusCode = 401;
-                await context.Response.WriteAsync("API Key mancante");
+                await context.Response.WriteAsync("Missing API key");
                 return;
             }
 
@@ -25,7 +25,7 @@
             if (!apiKey.Equals(extractedApiKey))
             {
                 context.Response.StatusCode = 401;
-                await context.Response.WriteAsync("API Key non valida");
+                await context.Response.WriteAsync("API key invalid");
                 return;
             }
 

@@ -1,2 +1,5 @@
 bin
 /appsettings.json
+/obj/Release/net10.0
+/Properties/PublishProfiles
+/BookShelf.csproj.user
